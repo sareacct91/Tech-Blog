@@ -21,13 +21,6 @@ User.init({
     validate: {
       isAlphanumeric: true,
     },
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      isEmail: true,
-    },
     unique: true,
   },
   password: {
@@ -36,8 +29,16 @@ User.init({
   },
 }, {
   hooks: {
+    async beforeBulkCreate(userData) {
+      const users = await Promise.all(userData.map(async user => {
+        user.password = await bcrypt.hash(user.password, 10);
+        return user;
+      }))
+
+      return users;
+    },
     async beforeCreate(userData) {
-      console.log(userData);
+      // console.log(userData);
       userData.password = await bcrypt.hash(userData.password, 10);
       return userData;
     },
