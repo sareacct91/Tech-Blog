@@ -7,7 +7,7 @@ async function formHandler(e) {
   const password = document.getElementById('passwordInput').value.trim();
 
   if (!(username && password)) {
-    return alert('Please fill out all fields');
+    return document.getElementById('error').textContent = 'Please fill out all fields';
   }
 
   const userData = { username, password };
