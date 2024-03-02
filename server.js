@@ -7,11 +7,12 @@ const sequelize = require('./config/connection');
 const path = require('path');
 const morgan = require('morgan');
 const errorHandler = require('./utils/error-handler');
+const helpers = require('./utils/helpers');
 const router = require('./routes');
 
 const app = express();
 const PORT = process.env.PORT;
-const hbs = create({extname: 'hbs'});
+const hbs = create({extname: 'hbs', helpers});
 
 app.use(session({
   secret: process.env.SESS_SECRET,
@@ -31,7 +32,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 
-app.use(morgan('tiny'));
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
