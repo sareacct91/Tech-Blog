@@ -7,6 +7,8 @@ async function renderHome(req, res) {
   const blogs = await findAllBlogs();
   const blogsData = blogs.map(e => e.toJSON());
 
+  console.log(blogsData);
+
   res.status(200).render('home', { blogsData, loggedIn });
 };
 
