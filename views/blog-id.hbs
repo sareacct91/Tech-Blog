@@ -1,0 +1,38 @@
+<div class="mb-5 rounded-sm border-4 border-dark">
+  <div class="flex h-11 items-center justify-between bg-dark px-5 text-light">
+    <h2 class="font-semi-bold text-2xl">{{blogData.title}}</h2>
+    <p>Posted by
+      {{blogData.user.username}}
+      on
+      {{format_time blogData.created_at}}</p>
+  </div>
+  <p class="px-5 py-3 text-xl">{{blogData.content}}</p>
+</div>
+
+<ul>
+  {{#each blogData.comments}}
+    <li class="mb-5 rounded-sm border-4 border-dark">
+      <div class="flex h-11 items-center justify-between bg-dark px-5"></div>
+      <p class="px-5 py-3 pt-10 text-xl">{{content}}</p>
+      <p class="px-5 py-3 pb-10 text-xl">—{{user.username}},
+        {{format_time created_at}}</p>
+    </li>
+  {{/each}}
+</ul>
+
+<div class="mb-5 rounded-sm border-4 border-dark">
+  <div class="flex h-11 items-center justify-between bg-dark px-5"></div>
+  <p class="px-5 py-2 text-xl">Comment</p>
+  <div class="px-5">
+    <textarea
+      name="comment"
+      id="commentArea"
+      class="mb-3 h-24 min-h-max w-full border-4 border-blue-400 px-5 py-2 text-xl"
+    ></textarea>
+    <button
+      type="submit"
+      class="mb-5 h-11 w-full rounded-md bg-gray-500"
+    >Submit</button>
+  </div>
+
+</div>
