@@ -1,19 +1,25 @@
 const { BadRequestError } = require('../utils/errors');
 const { findUserByName } = require('../utils/queries/user');
+const { findAllBlogs } = require('../utils/queries/blog');
 
-
-function renderHome(req, res) {
+async function renderHome(req, res) {
   const loggedIn = req.session.loggedIn;
+  const blogs = await findAllBlogs();
+  const blogsData = blogs.map(e => e.toJSON());
 
-  res.status(200).render('home', { loggedIn });
+  res.status(200).render('home', { blogsData, loggedIn });
 };
+
+function renderSignup(req, res) {
+  res.status(200).render('signup', {});
+}
 
 function renderLogin(req, res) {
   res.status(200).render('login', {});
 }
 
 async function userLogin(req, res) {
-  console.log('\n\nuserlogin\n', req.body, '\n\n');
+  // console.log('\n\nuserlogin\n', req.body, '\n\n');
   const { username, password } = req.body;
 
   const user = await findUserByName(username);
@@ -33,10 +39,17 @@ async function userLogin(req, res) {
   });
 }
 
+function userLogout(req, res) {
+  req.session.destroy(() => {
+    res.status(200).json({ msg: 'logged out' });
+  })
+}
+
 
 module.exports = {
   renderHome,
   renderLogin,
   userLogin,
-
+  userLogout,
+  renderSignup
 }

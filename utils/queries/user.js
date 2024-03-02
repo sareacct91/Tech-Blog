@@ -22,9 +22,24 @@ async function findUserByName(username) {
   return result;
 };
 
+async function createOneUser(userData) {
+  const result = await User.create(userData);
+
+  console.log('\n\nafter create\n\n')
+  console.log(result);
+  console.log('\n\n')
+
+  if (!result) {
+    throw new InternalServerError('user', `Couldn't create user with data ${userData}`);
+  }
+
+  return result;
+}
+
 
 module.exports = {
   findUserByName,
   findUserPk,
+  createOneUser,
 
 }
