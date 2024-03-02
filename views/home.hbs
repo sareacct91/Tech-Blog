@@ -1,0 +1,16 @@
+<ul>
+  {{#each blogsData}}
+    <li class="mb-5 rounded-sm border-4 border-dark">
+      <a href="/blogs/{{id}}">
+        <div class="flex justify-between bg-dark px-5 py-3 text-light">
+          <h2 class="font-semi-bold text-2xl">{{title}}</h2>
+          <p class="self-center">Posted by
+            {{user.username}}
+            on
+            {{format_time created_at}}</p>
+        </div>
+        <p class="px-5 py-3 text-xl">{{content}}</p>
+      </a>
+    </li>
+  {{/each}}
+</ul>
