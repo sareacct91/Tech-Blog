@@ -1,0 +1,41 @@
+<div class="mb-5 rounded-sm border-4 border-dark">
+  <div
+    class="flex h-11 items-center justify-between bg-dark px-5 text-light"
+  >Edit Post</div>
+  <form id="editPost" class="flex flex-col px-5" data-blogId="{{blogData.id}}">
+
+    <label class="py-2 text-xl" for="title">Title</label>
+    <input
+      type="text"
+      name="title"
+      id="titleInput"
+      class="border-4 border-blue-400 px-5 text-xl"
+      value="{{blogData.title}}"
+    />
+
+    <label class="py-2 text-xl" for="content">Content</label>
+    <textarea
+      name="content"
+      id="contentArea"
+      class="mb-4 h-24 min-h-max w-full border-4 border-blue-400 px-5 py-2 text-xl"
+    >{{blogData.content}}</textarea>
+
+    <button
+      id="editBtn"
+      class="mb-2 h-11 w-full rounded-md bg-gray-500 text-white"
+    >
+      Update Post
+    </button>
+
+    <button
+      id="deleteBtn"
+      class="mb-5 h-11 w-full rounded-md bg-gray-500 text-white"
+    >
+      Delete
+    </button>
+
+    <div id="error" class="self-center text-red-500"></div>
+  </form>
+</div>
+
+<script src="/js/blog-edit.js"></script>
