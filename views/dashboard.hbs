@@ -1,0 +1,19 @@
+<div class="flex min-h-[calc(100vh-180px)] flex-col justify-between">
+  <ul>
+    {{#each blogsData}}
+      <li
+        class="mb-3 flex items-center justify-between rounded-md bg-gray-500 p-3 px-5 text-xl text-white"
+      >
+        <a href="/blog/{{id}}/edit" class="flex w-full justify-between">
+          <p>{{title}}</p>
+          <p>{{format_time updated_at}}</p>
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+
+  <a
+    href="/blog/new"
+    class="w-max self-center rounded-md bg-dark p-3 px-5 text-xl text-light"
+  >+ New Post</a>
+</div>
