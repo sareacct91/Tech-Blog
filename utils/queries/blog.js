@@ -1,5 +1,5 @@
-const { Blog, User, Comment } = require('../../model');
 const { InternalServerError, BadRequestError } = require('../errors');
+const { Blog, User, Comment } = require('../../model');
 
 
 async function findAllBlogs() {

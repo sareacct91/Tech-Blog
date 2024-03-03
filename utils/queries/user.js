@@ -1,5 +1,5 @@
-const {User} = require('../../model');
 const { BadRequestError, InternalServerError } = require('../errors');
+const {User} = require('../../model');
 
 async function findUserPk(pk) {
   const result = User.findByPk(pk);
@@ -24,10 +24,6 @@ async function findUserByName(username) {
 
 async function createOneUser(userData) {
   const result = await User.create(userData);
-
-  console.log('\n\nafter create\n\n')
-  console.log(result);
-  console.log('\n\n')
 
   if (!result) {
     throw new InternalServerError('user', `Couldn't create user with data ${userData}`);
