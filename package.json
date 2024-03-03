@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node --env-file=.env server.js",
+    "start": "node server.js",
     "dev": "node --env-file=.env --watch server.js",
     "css": "npx tailwindcss -i ./public/css/input.css -o ./public/css/style.css --watch",
     "seed": "node --env-file=.env ./seeds/index.js"
