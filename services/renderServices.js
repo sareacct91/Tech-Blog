@@ -7,8 +7,6 @@ async function renderHome(req, res) {
   const blogs = await findAllBlogs();
   const blogsData = blogs.map(e => e.toJSON());
 
-  console.log(blogsData);
-
   res.status(200).render('home', { blogsData, loggedIn, });
 };
 
@@ -18,7 +16,6 @@ async function renderDashboard(req, res) {
   const blogs = await findBlogsByUser(user_id);
   const blogsData = blogs.map(e => e.toJSON());
 
-  console.log(blogsData);
 
   res.status(200).render('dashboard', { blogsData, loggedIn, isDashboard: true });
 }
@@ -32,7 +29,6 @@ function renderLogin(req, res) {
 }
 
 async function userLogin(req, res) {
-  // console.log('\n\nuserlogin\n', req.body, '\n\n');
   const { username, password } = req.body;
 
   const user = await findUserByName(username);
@@ -65,8 +61,6 @@ async function renderBlog(req, res) {
   const blog = await findBlogByPk(id);
   const blogData = blog.toJSON();
 
-  console.log(blogData);
-
   res.status(200).render('blog-id', { blogData, loggedIn })
 }
 
@@ -95,5 +89,5 @@ module.exports = {
   renderBlog,
   renderBlogEditForm,
   renderBlogNewForm,
-  
+
 }

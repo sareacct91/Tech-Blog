@@ -38,7 +38,6 @@ User.init({
       return users;
     },
     async beforeCreate(userData) {
-      // console.log(userData);
       userData.password = await bcrypt.hash(userData.password, 10);
       return userData;
     },
