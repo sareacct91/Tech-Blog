@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const services = require('../services');
 const userAuth = require('../utils/auth');
+const apiRoutes = require('./api');
 
-const userRoutes = require('./api/userRoutes');
-const blogRoutes = require('./api/blogRoutes');
 
 router.route('/')
   .get(services.renderHome);
@@ -18,8 +17,7 @@ router.route('/login')
 router.route('/logout')
   .post(services.userLogout);
 
-router.use('/users', userRoutes);
-router.use('/blogs', userAuth, blogRoutes);
+router.use('/api', apiRoutes);
 
 
 module.exports = router;
