@@ -1,4 +1,3 @@
-const { Blog, User, Comment } = require('../model');
 const { BadRequestError } = require('../utils/errors');
 const { findBlogByPk } = require('../utils/queries/blog');
 
