@@ -17,12 +17,11 @@ const hbs = create({extname: 'hbs', helpers});
 app.use(session({
   secret: process.env.SESS_SECRET,
   cookie: {
-    maxAge: 60 * 60 * 24 * 1000,
+    maxAge: 60 * 5 * 1000,
     httpOnly: true,
     sameSite: 'strict',
   },
   resave: false,
-  rolling: true,
   saveUninitialized: false,
   store: new SequelizeStore({ db: sequelize })
 }))
