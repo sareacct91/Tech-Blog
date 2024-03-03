@@ -23,16 +23,19 @@
 <div class="mb-5 rounded-sm border-4 border-dark">
   <div class="flex h-11 items-center justify-between bg-dark px-5"></div>
   <p class="px-5 py-2 text-xl">Comment</p>
-  <div class="px-5">
+  <form id="commentForm" class="px-5">
     <textarea
       name="comment"
       id="commentArea"
+      data-blogId="{{blogData.id}}"
       class="mb-3 h-24 min-h-max w-full border-4 border-blue-400 px-5 py-2 text-xl"
     ></textarea>
     <button
       type="submit"
       class="mb-5 h-11 w-full rounded-md bg-gray-500"
     >Submit</button>
-  </div>
-
+    <div id="error" class="self-center text-red-500"></div>
+  </form>
 </div>
+
+<script src="/js/blog-id.js"></script>
