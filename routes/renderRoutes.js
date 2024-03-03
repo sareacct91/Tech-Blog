@@ -15,8 +15,6 @@ router.route('/login')
 router.route('/logout')
   .post(services.userLogout);
 
-
-
 router.route('/dashboard')
   .get(userAuth, services.renderDashboard);
 
