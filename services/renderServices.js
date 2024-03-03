@@ -16,7 +16,6 @@ async function renderDashboard(req, res) {
   const blogs = await findBlogsByUser(user_id);
   const blogsData = blogs.map(e => e.toJSON());
 
-
   res.status(200).render('dashboard', { blogsData, loggedIn, isDashboard: true });
 }
 
