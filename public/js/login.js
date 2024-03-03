@@ -11,7 +11,7 @@ document.getElementById('loginForm')
 
     const userData = { username, password };
 
-    const response = await fetch('/api/login', {
+    const response = await fetch('/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
