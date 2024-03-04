@@ -1,3 +1,5 @@
+//@ts-check
+
 const { createOneUser } = require('../utils/queries/user');
 const { BadRequestError } = require('../utils/errors');
 

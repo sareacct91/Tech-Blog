@@ -1,12 +1,15 @@
-document.getElementById('editBtn').addEventListener('click', async (e) => {
+//@ts-check
+
+document.getElementById('editBtn')?.addEventListener('click', async (e) => {
   e.preventDefault();
 
-  const title = document.getElementById('titleInput').value.trim();
-  const content = document.getElementById('contentArea').value.trim();
-  const blog_id = document.getElementById('editPost').dataset.blogid;
+  const title = document.getElementById('titleInput')?.value.trim();
+  const content = document.getElementById('contentArea')?.value.trim();
+  const blog_id = document.getElementById('editPost')?.dataset.blogid;
+  const errorEl = document.getElementById('error');
 
   if (!(title && content)) {
-    return document.getElementById('error').textContent = 'Please fill out all field';
+    return errorEl ? errorEl.textContent = 'Please fill out all field' : alert('Please fill out all field');
   }
 
   const inputData = { title, content };
@@ -21,22 +24,23 @@ document.getElementById('editBtn').addEventListener('click', async (e) => {
   const result = await response.json();
 
   if (!response.ok) {
-    return document.getElementById('error').textContent = result.msg;
+    return errorEl ? errorEl.textContent = result.msg : alert(result.msg);
   }
 
   return window.location.replace('/dashboard');
 })
 
-document.getElementById('deleteBtn').addEventListener('click', async (e) => {
+document.getElementById('deleteBtn')?.addEventListener('click', async (e) => {
   e.preventDefault();
 
-  const blog_id = document.getElementById('editPost').dataset.blogid;
+  const blog_id = document.getElementById('editPost')?.dataset.blogid;
+  const errorEl = document.getElementById('error');
 
   const response = await fetch(`/api/blogs/${blog_id}`, { method: 'DELETE' });
   const result = await response.json();
 
   if (!response.ok) {
-    return document.getElementById('error').textContent = result.msg;
+    return errorEl ? errorEl.textContent = result.msg : alert(result.msg);
   }
 
   return window.location.replace('/dashboard');

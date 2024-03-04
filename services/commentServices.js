@@ -1,3 +1,5 @@
+//@ts-check
+
 const { BadRequestError } = require('../utils/errors');
 const { createOneComment } = require('../utils/queries/comment');
 
@@ -21,5 +23,4 @@ async function createComment(req, res) {
 
 module.exports = {
   createComment,
-
 }

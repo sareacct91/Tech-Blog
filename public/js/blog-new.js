@@ -1,28 +1,29 @@
-document.getElementById('newPost')
-  .addEventListener('submit', async (e) => {
-    e.preventDefault();
+//@ts-check
 
-    const title = document.getElementById('titleInput').value.trim();
-    const content = document.getElementById('contentArea').value.trim();
+document.getElementById('newPost')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-    if (!(title && content)) {
-      return document.getElementById('error').textContent = 'Please fill out all fields';
-    }
+  const title = document.getElementById('titleInput')?.value.trim();
+  const content = document.getElementById('contentArea')?.value.trim();
+  const errorEl = document.getElementById('error');
 
-    const inputData = { title, content };
+  if (!(title && content)) {
+    return errorEl ? errorEl.textContent = 'Please fill out all fields' : alert('Please fill out all fields');
+  }
 
-    const response = await fetch('/api/blogs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(inputData),
-    });
-    const result = await response.json();
-
-    if (!response.ok) {
-      return document.getElementById('error').textContent = result.msg;
-    }
-
-    return window.location.replace('/dashboard');
+  const inputData = { title, content };
+  const response = await fetch('/api/blogs', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(inputData),
   });
+  const result = await response.json();
+
+  if (!response.ok) {
+    return errorEl ? errorEl.textContent = result.msg : alert(result.msg);
+  }
+
+  return window.location.replace('/dashboard');
+});

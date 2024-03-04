@@ -1,3 +1,5 @@
+//@ts-check
+
 const { BadRequestError } = require('../utils/errors');
 const { findUserByName } = require('../utils/queries/user');
 const { findAllBlogs, findBlogsByUser, findBlogByPk } = require('../utils/queries/blog');
@@ -13,7 +15,7 @@ async function renderHome(req, res) {
 async function renderDashboard(req, res) {
   const { user_id, loggedIn } = req.session;
 
-  const blogs = await findBlogsByUser(user_id);
+  const blogs = await findBlogsByUser(+user_id);
   const blogsData = blogs.map(e => e.toJSON());
 
   res.status(200).render('dashboard', { blogsData, loggedIn, isDashboard: true });
@@ -57,7 +59,7 @@ async function renderBlog(req, res) {
   const { id } = req.params;
   const loggedIn = req.session;
 
-  const blog = await findBlogByPk(id);
+  const blog = await findBlogByPk(+id);
   const blogData = blog.toJSON();
 
   res.status(200).render('blog-id', { blogData, loggedIn })

@@ -1,30 +1,30 @@
-document.getElementById('commentForm')
-  .addEventListener('submit', async (e) => {
-    e.preventDefault();
+//@ts-check
 
-    const textEl = document.getElementById('commentArea');
-    const content = textEl.value.trim();
-    const blog_id = textEl.dataset.blogid;
+document.getElementById('commentForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-    if (!content) {
-      return document.getElementById('error').textContent = 'Please type in the comment';
-    }
+  const textEl = document.getElementById('commentArea');
+  const content = textEl?.value.trim();
+  const blog_id = textEl?.dataset.blogid;
+  const errorEl = document.getElementById('error');
 
-    const inputData = { content, blog_id };
+  if (!content) {
+    return errorEl ? errorEl.textContent = 'Please type in the comment' : alert('Please type in the comment');
+  }
 
-    const response = await fetch('/api/comments', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(inputData),
-    });
+  const inputData = { content, blog_id };
+  const response = await fetch('/api/comments', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(inputData),
+  });
+  const result = await response.json();
 
-    const result = await response.json();
+  if (!response.ok) {
+    return errorEl ? errorEl.textContent = result.msg : alert(result.msg);
+  }
 
-    if (!response.ok) {
-      return document.getElementById('error').textContent = result.msg;
-    }
-
-    return window.location.reload();
-  })
+  return window.location.reload();
+})

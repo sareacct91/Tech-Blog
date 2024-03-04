@@ -1,3 +1,5 @@
+//@ts-check
+
 const { BadRequestError } = require('../utils/errors');
 const { deleteBlogByPk, updateBlogByPk, createOneBlog } = require('../utils/queries/blog');
 
